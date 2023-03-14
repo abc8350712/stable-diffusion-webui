@@ -407,7 +407,7 @@ def create_output_panel(tabname, outdir):
 def create_sampler_and_steps_selection(choices, tabname):
     if opts.samplers_in_dropdown:
         with FormRow(elem_id=f"sampler_selection_{tabname}"):
-            sampler_index = gr.Dropdown(label='Sampling method', elem_id=f"{tabname}_sampling", choices=[x.name for x in choices], value=choices[-2].name, type="index")
+            sampler_index = gr.Dropdown(label='Sampling method', elem_id=f"{tabname}_sampling", choices=[x.name for x in choices], value=choices[-3].name, type="index")
             steps = gr.Slider(minimum=1, maximum=150, step=1, elem_id=f"{tabname}_steps", label="Sampling steps", value=30)
     else:
         with FormGroup(elem_id=f"sampler_selection_{tabname}"):
