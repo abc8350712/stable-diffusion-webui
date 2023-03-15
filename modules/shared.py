@@ -325,7 +325,7 @@ options_templates.update(options_section(('saving-images', "Saving images/grids"
     "save_txt": OptionInfo(False, "Create a text file next to every image with generation parameters."),
     "save_images_before_face_restoration": OptionInfo(False, "Save a copy of image before doing face restoration."),
     "save_images_before_highres_fix": OptionInfo(False, "Save a copy of image before applying highres fix."),
-    "save_images_before_color_correction": OptionInfo(False, "Save a copy of image before applying color correction to img2img results"),
+    "save_images_before_color_correction": OptionInfo(True, "Save a copy of image before applying color correction to img2img results"),
     "jpeg_quality": OptionInfo(80, "Quality for saved jpeg images", gr.Slider, {"minimum": 1, "maximum": 100, "step": 1}),
     "export_for_4chan": OptionInfo(True, "If the saved image file size is above the limit, or its either width or height are above the limit, save a downscaled copy as JPG"),
     "img_downscale_threshold": OptionInfo(4.0, "File size limit for the above option, MB", gr.Number),
