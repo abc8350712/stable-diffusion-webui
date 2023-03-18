@@ -286,7 +286,7 @@ def create_toprow(is_img2img):
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        prompt = gr.Textbox(value="rosy skin,  anime,  colorful, vivid ,high saturation, paintings,  cinema light,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  (face blush:1.0), (colorful rose pink lips:1.2),  beautiful detailed eyes and face, 1girl, (blurry background:1.4),   small polish mouth, puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4) <lora:fashion:0.2>", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
+                        prompt = gr.Textbox(value="anime,  paintings,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  beautiful detailed eyes and face, 1girl,   puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4)", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
 
             with gr.Row():
                 with gr.Column(scale=80):
