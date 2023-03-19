@@ -284,6 +284,9 @@ def resize_image(resize_mode, im, width, height, upscaler_name=None):
         resized = resize(im, src_w, src_h)
         res = Image.new("RGB", (width, height))
         res.paste(resized, box=(width // 2 - src_w // 2, height // 2 - src_h // 2))
+    
+    elif resize_mode == 2:
+        res = im
 
     else:
         ratio = width / height
