@@ -504,7 +504,6 @@ def create_ui():
                                 hr_upscaler = gr.Dropdown(label="Upscaler", elem_id="txt2img_hr_upscaler", choices=[*shared.latent_upscale_modes, *[x.name for x in shared.sd_upscalers]], value=shared.latent_upscale_default_mode)
                                 hr_second_pass_steps = gr.Slider(minimum=0, maximum=150, step=1, label='Hires steps', value=0, elem_id="txt2img_hires_steps")
                                 denoising_strength = gr.Slider(minimum=0.0, maximum=1.0, step=0.01, label='Denoising strength', value=0.5, elem_id="txt2img_denoising_strength")
-                                contrast = gr.inputs.Slider(minimum=0.1, maximum=2.0, step=0.1, label="Contrast", value=1.5, elem_id = "txt2img_contrast" )
 
 
                             with FormRow(elem_id="txt2img_hires_fix_row2", variant="compact"):
