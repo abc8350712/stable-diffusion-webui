@@ -573,7 +573,6 @@ def create_ui():
                     hr_resize_x,
                     hr_resize_y,
                     override_settings,
-                    contrast,
                 ] + custom_inputs,
 
                 outputs=[
