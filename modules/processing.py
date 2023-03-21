@@ -13,6 +13,14 @@ from skimage import exposure
 from typing import Any, Dict, List, Optional
 from PIL import Image, ImageEnhance
 import gradio as gr
+current_path = os.path.abspath(__file__)
+current_dir = os.path.dirname(current_path)
+
+sys.path.append(os.path.join(current_dir, "ailab/Real-CUGAN"))
+from img_sp import img_sp
+
+
+
 
 def apply_contrast(image, contrast):
     enhancer = ImageEnhance.Contrast(image)
@@ -696,6 +704,7 @@ def process_images_inner(p: StableDiffusionProcessing) -> Processed:
                     image.info["parameters"] = text
                 
                 image = process_image(image, p.contrast)
+                image = img_sp(image)
 
                 output_images.append(image)
 
