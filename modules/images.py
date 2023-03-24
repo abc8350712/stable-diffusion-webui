@@ -286,8 +286,15 @@ def resize_image(resize_mode, im, width, height, upscaler_name=None):
         res.paste(resized, box=(width // 2 - src_w // 2, height // 2 - src_h // 2))
     
     elif resize_mode == 2:
-        res = im
-
+        #res = im
+        ori_h = im.height
+        ori_w = im.width
+        import math
+        ratio = math.sqrt(float(ori_h * ori_w) / (width * height))
+        ori_h = int(ori_h / ratio)
+        ori_w = int(ori_w / ratio)
+        res = resize(im, ori_w, ori_h)
+        
     else:
         ratio = width / height
         src_ratio = im.width / im.height
