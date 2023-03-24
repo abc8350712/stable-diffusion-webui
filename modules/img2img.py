@@ -112,8 +112,16 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
         mask = None
     
     if resize_mode==2:
-        height = image.height
-        width = image.width
+         #res = im
+        ori_h = im.height
+        ori_w = im.width
+        import math
+        ratio = math.sqrt(float(ori_h * ori_w) / (width * height))
+        ori_h = int(ori_h / ratio)
+        ori_w = int(ori_w / ratio)
+        res = resize(im, ori_w, ori_h)
+        height = ori_h
+        width = ori_w
 
     # Use the EXIF orientation of photos taken by smartphones.
     if image is not None:
