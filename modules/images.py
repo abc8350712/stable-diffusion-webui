@@ -287,13 +287,13 @@ def resize_image(resize_mode, im, width, height, upscaler_name=None):
     
     elif resize_mode == 2:
         #res = im
-        ori_h = im.height
-        ori_w = im.width
-        import math
-        ratio = math.sqrt(float(ori_h * ori_w) / (width * height))
-        ori_h = int(ori_h / ratio)
-        ori_w = int(ori_w / ratio)
-        res = resize(im, ori_w, ori_h)
+        # ori_h = im.height
+        # ori_w = im.width
+        # import math
+        # ratio = math.sqrt(float(ori_h * ori_w) / (width * height))
+        # ori_h = int(ori_h / ratio)
+        # ori_w = int(ori_w / ratio)
+        res = resize(im, width, height)
         
     else:
         ratio = width / height

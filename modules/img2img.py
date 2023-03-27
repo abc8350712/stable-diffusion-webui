@@ -113,13 +113,13 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
     
     if resize_mode==2:
          #res = im
-        ori_h = im.height
-        ori_w = im.width
+        ori_h = image.height
+        ori_w = image.width
         import math
         ratio = math.sqrt(float(ori_h * ori_w) / (width * height))
         ori_h = int(ori_h / ratio)
         ori_w = int(ori_w / ratio)
-        res = resize(im, ori_w, ori_h)
+        #res = resize(im, ori_w, ori_h)
         height = ori_h
         width = ori_w
 
