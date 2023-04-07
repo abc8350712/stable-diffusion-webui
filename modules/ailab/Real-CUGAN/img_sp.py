@@ -28,7 +28,8 @@ from upcunet_v3 import RealWaifuUpScaler
 def img_sp(img):
 
     img = np.array(img)
-    
+    new_img = img[:, :, :3]
+
     if torch.cuda.is_available():
                 upscaler = RealWaifuUpScaler(2, os.path.join(model_path, "pro-denoise3x-up2x.pth"), half=True, device="cuda:0")
 
