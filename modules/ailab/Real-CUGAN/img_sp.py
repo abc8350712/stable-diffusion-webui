@@ -26,9 +26,11 @@ img_dir = "/Users/moon/Downloads/tmpjxmby22u.png"
 from upcunet_v3 import RealWaifuUpScaler
 
 def img_sp(img):
-
+    print("img_sp: ", img.shape)
     img = np.array(img)
     new_img = img[:, :, :3]
+    print("img_sp: ", img.shape)
+
 
     if torch.cuda.is_available():
                 upscaler = RealWaifuUpScaler(2, os.path.join(model_path, "pro-denoise3x-up2x.pth"), half=True, device="cuda:0")
