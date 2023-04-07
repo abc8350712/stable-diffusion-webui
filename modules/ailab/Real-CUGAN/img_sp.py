@@ -26,10 +26,10 @@ img_dir = "/Users/moon/Downloads/tmpjxmby22u.png"
 from upcunet_v3 import RealWaifuUpScaler
 
 def img_sp(img):
-    print("img_sp: ", img.shape)
+    #print("img_sp: ", img.shape)
     img = np.array(img)
     img = img[:, :, :3]
-    print("img_sp: ", img.shape)
+    #print("img_sp: ", img.shape)
 
 
     if torch.cuda.is_available():
