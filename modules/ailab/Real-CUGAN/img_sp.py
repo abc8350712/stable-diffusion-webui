@@ -28,7 +28,7 @@ from upcunet_v3 import RealWaifuUpScaler
 def img_sp(img):
     print("img_sp: ", img.shape)
     img = np.array(img)
-    new_img = img[:, :, :3]
+    img = img[:, :, :3]
     print("img_sp: ", img.shape)
 
 
