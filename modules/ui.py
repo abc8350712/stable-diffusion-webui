@@ -286,12 +286,12 @@ def create_toprow(is_img2img):
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        prompt = gr.Textbox(value="anime,  paintings,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  beautiful detailed eyes and face, 1girl,   puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4)", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
+                        prompt = gr.Textbox(value="anime,  paintings, 3D face,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  beautiful detailed eyes and face, 1girl,   puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4)", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
 
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        negative_prompt = gr.Textbox(value="(worst quality, low quality:1.4), (depth of field, blurry:1.2), (greyscale, monochrome:1.1), 3D face, cropped, lowres, text, jpeg artifacts, signature, watermark, username, blurry, artist name, trademark, watermark, title, multiple view, stains, spots, flaws, Reference sheet, curvy, plump, fat, muscular female, strabismus", label="Negative prompt", elem_id=f"{id_part}_neg_prompt", show_label=False, lines=2, placeholder="Negative prompt (press Ctrl+Enter or Alt+Enter to generate)")
+                        negative_prompt = gr.Textbox(value="(worst quality, low quality:1.4), (depth of field, blurry:1.2), (greyscale, monochrome:1.1), cropped, lowres, text, jpeg artifacts, signature, watermark, username, blurry, artist name, trademark, watermark, title, multiple view, stains, spots, flaws, Reference sheet, curvy, plump, fat, muscular female, strabismus", label="Negative prompt", elem_id=f"{id_part}_neg_prompt", show_label=False, lines=2, placeholder="Negative prompt (press Ctrl+Enter or Alt+Enter to generate)")
 
         button_interrogate = None
         button_deepbooru = None
