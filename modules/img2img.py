@@ -202,5 +202,21 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     #ori_image = images.resize_image(resize_mode , image, self.width, self.height)
 
+    resize_cro_image = crop_image.resize((int(processed.images[0].width / 16), int(processed.images[0].height / 16)), resample=Image.BILINEAR)
+
     processed.images.append(crop_image)
+    
+    def paste_image_four_times(img_dst: Image, img_src: Image) -> Image:
+    # 计算网格大小
+        grid_width = img_dst.width // 2
+        grid_height = img_dst.height // 2
+
+        # 将img_src贴到四个网格的左上角
+        img_dst.paste(img_src, (0, 0))
+        img_dst.paste(img_src, (grid_width, 0))
+        img_dst.paste(img_src, (0, grid_height))
+        img_dst.paste(img_src, (grid_width, grid_height))
+
+    paste_image_four_times(resize_cro_image, processed.images[0])
+
     return processed.images, generation_info_js, plaintext_to_html(processed.info), plaintext_to_html(processed.comments)
