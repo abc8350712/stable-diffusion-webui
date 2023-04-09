@@ -130,6 +130,10 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     assert 0. <= denoising_strength <= 1., 'can only work with strength in [0.0, 1.0]'
 
+
+
+    crop_image = image.resize(width, height)
+
     p = StableDiffusionProcessingImg2Img(
         sd_model=shared.sd_model,
         outpath_samples=opts.outdir_samples or opts.outdir_img2img_samples,
@@ -196,4 +200,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
     if opts.do_not_show_images:
         processed.images = []
 
+    #ori_image = images.resize_image(resize_mode , image, self.width, self.height)
+
+    processed.images.append(crop_image)
     return processed.images, generation_info_js, plaintext_to_html(processed.info), plaintext_to_html(processed.comments)
