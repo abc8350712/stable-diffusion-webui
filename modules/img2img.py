@@ -132,7 +132,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
 
 
-    crop_image = image.resize(width, height)
+    crop_image = image.resize(width, height, resample=Image.BILINEAR)
 
     p = StableDiffusionProcessingImg2Img(
         sd_model=shared.sd_model,
