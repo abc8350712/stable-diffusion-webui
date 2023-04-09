@@ -218,7 +218,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
         img_dst.paste(img_src, (grid_width, grid_height))
         return img_dst
 
-    img_dst = paste_image_four_times(resize_cro_image, processed.images[0])
+    img_dst = paste_image_four_times(processed.images[0], resize_cro_image)
     processed.images[0] = img_dst
 
     return processed.images, generation_info_js, plaintext_to_html(processed.info), plaintext_to_html(processed.comments)
