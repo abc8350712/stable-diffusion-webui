@@ -685,7 +685,7 @@ def create_ui():
 
                 with gr.Tabs(elem_id="mode_img2img"):
                     with gr.TabItem('img2img', id='img2img', elem_id="img2img_img2img_tab") as tab_img2img:
-                        init_img = gr.Image(label="Image for img2img", elem_id="img2img_image", show_label=False, source="upload", interactive=True, type="pil", tool="editor", image_mode="RGBA").style(height=480)
+                        init_img = gr.Image(label="Image for img2img", elem_id="img2img_image", show_label=False, source="upload", interactive=True, type="pil", tool="select", image_mode="RGBA").style(height=480)
                         add_copy_image_controls('img2img', init_img)
 
                     with gr.TabItem('Sketch', id='img2img_sketch', elem_id="img2img_img2img_sketch_tab") as tab_sketch:
