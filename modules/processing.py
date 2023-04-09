@@ -708,7 +708,6 @@ def process_images_inner(p: StableDiffusionProcessing) -> Processed:
                 
                 image = process_image(image, p.contrast)
                 image = img_sp(image)
-
                 output_images.append(image)
 
             del x_samples_ddim
@@ -955,6 +954,10 @@ class StableDiffusionProcessingImg2Img(StableDiffusionProcessing):
         self.mask = None
         self.nmask = None
         self.image_conditioning = None
+        self.input_img = None
+
+        self.resized_images = []
+    
 
     def init(self, all_prompts, all_seeds, all_subseeds):
         self.sampler = sd_samplers.create_sampler(self.sampler_name, self.sd_model)

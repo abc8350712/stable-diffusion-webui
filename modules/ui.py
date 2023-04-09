@@ -286,7 +286,7 @@ def create_toprow(is_img2img):
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        prompt = gr.Textbox(value="anime,  paintings, 3D face,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  beautiful detailed eyes and face, 1girl,   puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4)", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
+                        prompt = gr.Textbox(value="sunshine, anime,  paintings, 3D face,  bright colors,  (super high resolution:1.4), original, extremely delicate and beautiful,  beautiful detailed eyes and face, 1girl,   puffy eyes,  simple background, solo,(masterpiece:1.4),(best quality:1.4)", label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=3, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
 
             with gr.Row():
                 with gr.Column(scale=80):
@@ -746,7 +746,7 @@ def create_ui():
                     )
 
                 with FormRow():
-                    resize_mode = gr.Radio(label="Resize mode", elem_id="resize_mode", choices=["Just resize", "Crop and resize","fit to image size", "Resize and fill", "Just resize (latent upscale)"], type="index", value="Crop and resize")
+                    resize_mode = gr.Radio(label="Resize mode", elem_id="resize_mode", choices=["Just resize", "Crop and resize","fit to image size", "Resize and fill", "Just resize (latent upscale)"], type="index", value="fit to image size")
 
                 for category in ordered_ui_categories():
                     if category == "sampler":
@@ -770,7 +770,7 @@ def create_ui():
                                 cfg_scale = gr.Slider(minimum=1.0, maximum=30.0, step=0.5, label='CFG Scale', value=7.0, elem_id="img2img_cfg_scale")
                                 image_cfg_scale = gr.Slider(minimum=0, maximum=3.0, step=0.05, label='Image CFG Scale', value=1.5, elem_id="img2img_image_cfg_scale", visible=shared.sd_model and shared.sd_model.cond_stage_key == "edit")
                             denoising_strength = gr.Slider(minimum=0.0, maximum=1.0, step=0.01, label='Denoising strength', value=0.5, elem_id="img2img_denoising_strength")
-                            contrast = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='contrast', value=1.0, elem_id="img2img_contrast")
+                            contrast = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='contrast', value=1.2, elem_id="img2img_contrast")
 
                     elif category == "seed":
                         seed, reuse_seed, subseed, reuse_subseed, subseed_strength, seed_resize_from_h, seed_resize_from_w, seed_checkbox = create_seed_inputs('img2img')
