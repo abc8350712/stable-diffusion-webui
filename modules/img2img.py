@@ -205,7 +205,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
     resize_cro_image = crop_image.resize((int(processed.images[0].width / 16), int(processed.images[0].height / 16)), resample=Image.BILINEAR)
 
     processed.images.append(crop_image)
-    
+
     def paste_image_four_times(img_dst: Image, img_src: Image) -> Image:
     # 计算网格大小
         grid_width = img_dst.width // 2
@@ -216,7 +216,9 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
         img_dst.paste(img_src, (grid_width, 0))
         img_dst.paste(img_src, (0, grid_height))
         img_dst.paste(img_src, (grid_width, grid_height))
+        return img_dst
 
-    paste_image_four_times(resize_cro_image, processed.images[0])
+    img_dst = paste_image_four_times(resize_cro_image, processed.images[0])
+    processed.images[0] = img_dst
 
     return processed.images, generation_info_js, plaintext_to_html(processed.info), plaintext_to_html(processed.comments)
