@@ -202,7 +202,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     #ori_image = images.resize_image(resize_mode , image, self.width, self.height)
 
-    resize_cro_image = crop_image.resize((int(processed.images[0].width / 16), int(processed.images[0].height / 16)), resample=Image.BILINEAR)
+    resize_cro_image = crop_image.resize((int(processed.images[0].width / 8), int(processed.images[0].height / 8)), resample=Image.BILINEAR)
 
     processed.images.append(crop_image)
 
