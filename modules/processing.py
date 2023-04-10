@@ -784,7 +784,7 @@ class StableDiffusionProcessingTxt2Img(StableDiffusionProcessing):
         self.truncate_x = 0
         self.truncate_y = 0
         self.applied_old_hires_behavior_to = None
-        self.contrast = contrast
+        #self.contrast = contrast
 
     def init(self, all_prompts, all_seeds, all_subseeds):
         if self.enable_hr:
