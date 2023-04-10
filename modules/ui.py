@@ -770,7 +770,9 @@ def create_ui():
                                 cfg_scale = gr.Slider(minimum=1.0, maximum=30.0, step=0.5, label='CFG Scale', value=7.0, elem_id="img2img_cfg_scale")
                                 image_cfg_scale = gr.Slider(minimum=0, maximum=3.0, step=0.05, label='Image CFG Scale', value=1.5, elem_id="img2img_image_cfg_scale", visible=shared.sd_model and shared.sd_model.cond_stage_key == "edit")
                             denoising_strength = gr.Slider(minimum=0.0, maximum=1.0, step=0.01, label='Denoising strength', value=0.5, elem_id="img2img_denoising_strength")
-                            contrast = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='contrast', value=1.2, elem_id="img2img_contrast")
+                            contrast = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='Contrast', value=1.2, elem_id="img2img_contrast")
+                            light = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='Light', value=1.2, elem_id="img2img_contrast")
+
 
                     elif category == "seed":
                         seed, reuse_seed, subseed, reuse_subseed, subseed_strength, seed_resize_from_h, seed_resize_from_w, seed_checkbox = create_seed_inputs('img2img')
@@ -880,6 +882,7 @@ def create_ui():
                     img2img_batch_inpaint_mask_dir,
                     override_settings,
                     contrast,
+                    light,
                 ] + custom_inputs,
                 outputs=[
                     img2img_gallery,
