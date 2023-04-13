@@ -771,7 +771,7 @@ def create_ui():
                                 image_cfg_scale = gr.Slider(minimum=0, maximum=3.0, step=0.05, label='Image CFG Scale', value=1.5, elem_id="img2img_image_cfg_scale", visible=shared.sd_model and shared.sd_model.cond_stage_key == "edit")
                             denoising_strength = gr.Slider(minimum=0.0, maximum=1.0, step=0.01, label='Denoising strength', value=0.5, elem_id="img2img_denoising_strength")
                             contrast = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='Contrast', value=1.2, elem_id="img2img_contrast")
-                            light = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='Light', value=1.2, elem_id="img2img_contrast")
+                            light = gr.Slider(minimum=0.0, maximum=2.0, step=0.01, label='Light', value=1.0, elem_id="img2img_contrast")
 
 
                     elif category == "seed":
