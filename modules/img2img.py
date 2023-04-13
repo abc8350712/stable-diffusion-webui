@@ -207,19 +207,27 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     processed.images.append(crop_image)
 
-    def paste_image_four_times(img_dst: Image, img_src: Image) -> Image:
+    def paste_image_four_times(img_dst: Image, img_src: Image, size: int) -> Image:
     # 计算网格大小
         grid_width = img_dst.width // 2
         grid_height = img_dst.height // 2
-
-        # 将img_src贴到四个网格的左上角
-        img_dst.paste(img_src, (0, 0))
-        img_dst.paste(img_src, (grid_width, 0))
-        img_dst.paste(img_src, (0, grid_height))
-        img_dst.paste(img_src, (grid_width, grid_height))
+        if size==2:
+            img_dst.paste(img_src, (0, 0))
+        elif size==4:
+            img_dst.paste(img_src, (0, 0))
+            img_dst.paste(img_src, (grid_width, 0))
+        else:
+            # 将img_src贴到四个网格的左上角
+            img_dst.paste(img_src, (0, 0))
+            img_dst.paste(img_src, (grid_width, 0))
+            img_dst.paste(img_src, (0, grid_height))
+            img_dst.paste(img_src, (grid_width, grid_height))
         return img_dst
 
-    img_dst = paste_image_four_times(processed.images[0], resize_cro_image)
+    length_processed_images = len(processed.images)
+    if length_processed_images == 2:
+        process_images.images = [process_images.images[0]] + process_images.images
+    img_dst = paste_image_four_times(processed.images[0], resize_cro_image, length_processed_images)
     processed.images[0] = img_dst
 
     return processed.images, generation_info_js, plaintext_to_html(processed.info), plaintext_to_html(processed.comments)
