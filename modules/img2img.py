@@ -224,7 +224,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
             img_dst.paste(img_src, (grid_width, grid_height))
         return img_dst
 
-    length_processed_images = len(processed.images)
+    length_processed_images = len(process_images.images)
     if length_processed_images == 2:
         process_images.images = [process_images.images[0]] + process_images.images
     img_dst = paste_image_four_times(processed.images[0], resize_cro_image, length_processed_images)
