@@ -203,7 +203,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     #ori_image = images.resize_image(resize_mode , image, self.width, self.height)
 
-    resize_cro_image = crop_image.resize((int(crop_image.width / 4), int(crop_image.height / 4)), resample=Image.BILINEAR)
+    resize_cro_image = crop_image.resize((int(crop_image.width / 2), int(crop_image.height / 2)), resample=Image.BILINEAR)
 
     processed.images.append(crop_image)
 
@@ -226,7 +226,7 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
 
     length_processed_images = len(processed.images)
     if length_processed_images == 2:
-        processed.images = [processed.images[0]] + processed.images
+        processed.images = [processed.images[0].copy()] + processed.images
     img_dst = paste_image_four_times(processed.images[0], resize_cro_image, length_processed_images)
     processed.images[0] = img_dst
 
