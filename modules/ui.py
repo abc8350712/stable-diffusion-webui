@@ -1024,7 +1024,7 @@ def create_ui():
             #image_input = gr.Image(label="框1：显示的图片")
             radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
             button = gr.Button()
-            button.click(update_image,vinputs=[radio_input] ,outputs=[image])
+            button.click(update_image, inputs=[radio_input] ,outputs=[image])
 
             image.change(
                 fn=wrap_gradio_call(modules.extras.run_pnginfo),
