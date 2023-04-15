@@ -1025,18 +1025,21 @@ def create_ui():
 
             # 将文件路径列表转换为 PIL.Image 对象列表
             images = [load_image_from_file(root_dir + path) for path in image_paths]
+            image_lists = [root_dir + path for path in image_paths]
 
             # 根据用户选择的图片更新显示的图片
-            def update_image(image_index):
-                global selected_image_index
-                selected_image_index = int(image_index)
-                return images[selected_image_index]
+            def update_image(img):
+                #global selected_image_index
+                #selected_image_index = int(image_index)
+                return img
 
             # 创建 Gradio 界面组件
             #image_input = gr.Image(label="框1：显示的图片")
-            radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
+    
+            gallery = gr.Gallery(value=image_lists).style(grid=5)
+            #radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
             button = gr.Button("choose style")
-            button.click(update_image, inputs=[radio_input] ,outputs=[image])
+            button.click(update_image, inputs=[gallery] ,outputs=[image])
 
             image.change(
                 fn=wrap_gradio_call(modules.extras.run_pnginfo),
