@@ -995,7 +995,11 @@ def create_ui():
                     def save_image(image ):
                         if image == None:
                             return
-                        image.save(root_dir + image.filename)
+                        from datetime import datetime
+
+                        now = datetime.now()
+                        formatted_time = now.strftime("%Y年%m月%d日 %H:%M:%S秒")
+                        image.save(root_dir + formatted_time + ".png")
                     save_button = gr.Button("save style")
                     save_button.click(save_image, inputs=[image])
 
