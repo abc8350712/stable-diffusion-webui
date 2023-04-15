@@ -24,7 +24,12 @@ from modules.ui_components import FormRow, FormGroup, ToolButton, FormHTML
 from modules.paths import script_path, data_path
 
 from modules.shared import opts, cmd_opts, restricted_opts
+import os
+# 获取当前文件的绝对路径
+current_path = os.path.abspath(__file__)
 
+# 获取当前文件所在目录的路径
+current_directory = os.path.dirname(current_path)
 import modules.codeformer_model
 import modules.generation_parameters_copypaste as parameters_copypaste
 import modules.gfpgan_model
@@ -981,27 +986,51 @@ def create_ui():
         ui_postprocessing.create_ui()
 
     with gr.Blocks(analytics_enabled=False) as pnginfo_interface:
-        with gr.Row().style(equal_height=False):
-            with gr.Column(variant='panel'):
-                image = gr.Image(elem_id="pnginfo_image", label="Source", source="upload", interactive=True, type="pil")
+        with gr.Column():
+            with gr.Row().style(equal_height=False):
+                with gr.Column(variant='panel'):
+                    image = gr.Image(elem_id="pnginfo_image", label="Source", source="upload", interactive=True, type="pil")
 
-            with gr.Column(variant='panel'):
-                html = gr.HTML()
-                generation_info = gr.Textbox(visible=False, elem_id="pnginfo_generation_info")
-                html2 = gr.HTML()
-                with gr.Row():
-                    buttons = parameters_copypaste.create_buttons(["txt2img", "img2img", "inpaint", "extras"])
+                with gr.Column(variant='panel'):
+                    html = gr.HTML()
+                    generation_info = gr.Textbox(visible=False, elem_id="pnginfo_generation_info")
+                    html2 = gr.HTML()
+                    with gr.Row():
+                        buttons = parameters_copypaste.create_buttons(["txt2img", "img2img", "inpaint", "extras"])
 
-                for tabname, button in buttons.items():
-                    parameters_copypaste.register_paste_params_button(parameters_copypaste.ParamBinding(
-                        paste_button=button, tabname=tabname, source_text_component=generation_info, source_image_component=image,
-                    ))
+                    for tabname, button in buttons.items():
+                        parameters_copypaste.register_paste_params_button(parameters_copypaste.ParamBinding(
+                            paste_button=button, tabname=tabname, source_text_component=generation_info, source_image_component=image,
+                        ))
+            #current_directory
+            root_dir = current_directory + "/style_images/"
+            image_paths = os.listdir(root_dir)
 
-        image.change(
-            fn=wrap_gradio_call(modules.extras.run_pnginfo),
-            inputs=[image],
-            outputs=[html, generation_info, html2],
-        )
+            # 从本地文件加载图片并将其转换为 PIL.Image 对象
+            def load_image_from_file(path):        
+                img = Image.open(path)
+                return img
+
+            # 将文件路径列表转换为 PIL.Image 对象列表
+            images = [load_image_from_file(root_dir + path) for path in image_paths]
+
+            # 根据用户选择的图片更新显示的图片
+            def update_image(image_index):
+                global selected_image_index
+                selected_image_index = int(image_index)
+                return images[selected_image_index]
+
+            # 创建 Gradio 界面组件
+            #image_input = gr.Image(label="框1：显示的图片")
+            radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
+            button = gr.Button()
+            button.click(update_image,vinputs=[radio_input] ,outputs=[image])
+
+            image.change(
+                fn=wrap_gradio_call(modules.extras.run_pnginfo),
+                inputs=[image],
+                outputs=[html, generation_info, html2],
+            )
 
     def update_interp_description(value):
         interp_description_css = "<p style='margin-bottom: 2.5em'>{}</p>"
