@@ -985,11 +985,20 @@ def create_ui():
     with gr.Blocks(analytics_enabled=False) as extras_interface:
         ui_postprocessing.create_ui()
 
+    root_dir = current_directory + "/style_images/"
     with gr.Blocks(analytics_enabled=False) as pnginfo_interface:
         with gr.Column():
             with gr.Row().style(equal_height=False):
                 with gr.Column(variant='panel'):
                     image = gr.Image(elem_id="pnginfo_image", label="Source", source="upload", interactive=True, type="pil")
+                    
+                    def save_image(image ):
+                        if image.value is None:
+                            return
+                        image.value.save(root_dir + image.value.filename)
+                    save_button = gr.Button("save style")
+                    save_button.click(save_image, inputs=[image])
+
 
                 with gr.Column(variant='panel'):
                     html = gr.HTML()
@@ -1003,7 +1012,6 @@ def create_ui():
                             paste_button=button, tabname=tabname, source_text_component=generation_info, source_image_component=image,
                         ))
             #current_directory
-            root_dir = current_directory + "/style_images/"
             image_paths = os.listdir(root_dir)
 
             # 从本地文件加载图片并将其转换为 PIL.Image 对象
@@ -1023,7 +1031,7 @@ def create_ui():
             # 创建 Gradio 界面组件
             #image_input = gr.Image(label="框1：显示的图片")
             radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
-            button = gr.Button()
+            button = gr.Button("choose style")
             button.click(update_image, inputs=[radio_input] ,outputs=[image])
 
             image.change(
