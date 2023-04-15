@@ -993,9 +993,9 @@ def create_ui():
                     image = gr.Image(elem_id="pnginfo_image", label="Source", source="upload", interactive=True, type="pil")
                     
                     def save_image(image ):
-                        if image.value is None:
+                        if image == None:
                             return
-                        image.value.save(root_dir + image.value.filename)
+                        image.save(root_dir + image.filename)
                     save_button = gr.Button("save style")
                     save_button.click(save_image, inputs=[image])
 
