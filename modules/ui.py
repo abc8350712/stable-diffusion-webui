@@ -1028,22 +1028,25 @@ def create_ui():
             image_lists = [root_dir + path for path in image_paths]
 
             # 根据用户选择的图片更新显示的图片
-            def update_image(gallery, index):
-
-                print(len(gallery), index)
+            def update_image(index):
                 #global selected_image_index
                 #selected_image_index = int(image_index)
-                return gallery[index]
+                #print(index)
+                img = load_image_from_file(root_dir + image_paths[index[0]])
+                return img
 
             # 创建 Gradio 界面组件
             #image_input = gr.Image(label="框1：显示的图片")
     
-            gallery = gr.Gallery(label='style images', value=image_lists).style(grid=5)
+            gallery = gr.Gallery(label='Output', value=image_lists, elem_id="gallery_style").style(grid=5)
             #radio_input = gr.inputs.Radio(choices=[i for i in range(len(images))], label="选择风格")
             button = gr.Button("choose style")
-            button.click(update_image, 
-                 _js="(x, y) => [x, selected_gallery_index()]",
-                inputs=[gallery, gallery],
+            html_info = gr.HTML(elem_id=f'html_info')
+
+            button.click(
+                update_image, 
+                _js="(x) => [selected_gallery_index2()]",
+                inputs=[html_info],
                 outputs=[image])
 
             image.change(

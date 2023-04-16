@@ -17,6 +17,16 @@ function selected_gallery_index(){
     return result
 }
 
+function selected_gallery_index2(){
+    var buttons = gradioApp().querySelectorAll('div#gallery_style.gr-block .gallery-item');
+    var button = gradioApp().querySelector('div#gallery_style.gr-block .gallery-item.\\!ring-2')
+
+    var result = -1
+    buttons.forEach(function(v, i){ if(v==button) { result = i } })
+
+    return result
+}
+
 function extract_image_from_gallery(gallery){
     if(gallery.length == 1){
         return [gallery[0]]
